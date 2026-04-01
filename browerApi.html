@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geo Location</title>
+</head>
+<body>
+    <h1>Geo Location</h1>
+    <button id="getLocation">Get Location</button>
+    <p id="location"></p>
+
+    <!--clipboard example API-->
+    <button id="copyLocation">Copy Location</button>
+    <input type="text" id="locationInput" placeholder="Location will be copied here...">
+
+    <script>
+        const button = document.getElementById('getLocation');
+        const copyButton = document.getElementById('copyLocation');
+        const locationDisplay = document.getElementById('location');
+        const locationInput = document.getElementById('locationInput');
+
+        copyButton.addEventListener('click', () => {
+            const locationText = locationDisplay.textContent;
+            if (locationText) {
+                navigator.clipboard.writeText(locationText).then(() => {
+                    alert('Location copied to clipboard!');
+                    // want to past the clipboard content to the input field
+                    locationInput.value = locationText;
+                    
+
+                }).catch(err => {
+                    alert('Failed to copy: ', err);
+                });
+            } else {
+                alert('No location to copy!');
+            }
+        });
+
+        button.addEventListener('click', () => {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition((position) => {
+                    const { latitude, longitude } = position.coords;
+                    locationDisplay.textContent = `Latitude: ${latitude}, Longitude: ${longitude}`;
+                }, (error) => {
+                    locationDisplay.textContent = `Error: ${error.message}`;
+                });
+            } else {
+                locationDisplay.textContent = 'Geolocation is not supported by this browser.';
+            }
+        });
+    </script>
+</body>
+</html>

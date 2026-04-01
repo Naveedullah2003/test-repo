@@ -4,8 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #222;
+            color: #fff;
+        }
+        .number{
+            font-size: 6rem;
+            width: 15rem;
+            background-color: #eee;
+            color: #222;
+            margin: 4rem auto;
+            padding:20px 40px;
+        }
+        .number, .score, .highscore{
+            font-size: 2rem;
+        }
+        input{
+            width: 50px;
+            font-size:2rem;
+            text-align: center;
+        }
+        button{
+            font-size: 1.5rem;
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <h1>this is home page. main branch</h1>
+    <h1>Guess My Number</h1>
+    <p class="message">Start Guessing!</p>
+    <div class="number">?</div>
+    <input type="number" class="guess" min="1" max="20"><br>
+    <button class="check">Check!</button>
+    <button class="again">Again!</button>
+    <p>Score: <span class="score">20</span></p>
+    <p>Highscore: <span class="highscore">0</span></p>
+    <script src="script.js"></script>
 </body>
 </html>
